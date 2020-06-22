@@ -27,4 +27,11 @@ The analysis of the election shows:
 
 ## Challenge Overview
 ## Challenge Summary
-
+  The same as the summary above however added the counties and the county with the highest turn out to the analysis
+### County's percentage and total votes
+  - Jefferson: 10.5% (38,855)
+  - Denver: 82.8% (306,055)
+  - Arapahoe: 6.7% (24,801)
+  
+### Largest County Turnout
+   - Denver
