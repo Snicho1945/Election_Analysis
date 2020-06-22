@@ -19,7 +19,7 @@ total_votes = 0
 candidate_options = []
 # declare empty dictonary
 candidate_votes = {}
-# winner candi and count
+# winner candi and count and %
 winning_candidate = ""
 winning_count = 0
 winning_percentage = 0
@@ -48,45 +48,46 @@ with open(file_to_load) as election_data:
                         candidate_votes[candidate_name] = 0
                 # add vote to candi counb
                 candidate_votes[candidate_name] += 1
-        
+# saving results to txt file
+with open(file_to_save, "w") as txt_file:
+# print the final vote count
+         election_results = (
+         f"\nElection Results\n"
+         f"-------------------------\n"
+         f"Total Votes: {total_votes:,}\n"
+         f"-------------------------\n")
+         print(election_results, end="")
+        #save the final vote count to txt file.
+         txt_file.write(election_results)
         # determine the % of votes for candies by looping thru count
-        for candidate in candidate_votes:
+         for candidate in candidate_votes:
                 # retrieve vote count of a candi
                 votes = candidate_votes[candidate]
                 vote_percentage = float(votes) / float(total_votes) * 100
-                # print candi name and % + calc of percentage
-                print(f"{candidate}: {vote_percentage:.1f}% ({votes:,})\n")
+                # candi name and % + calc of percentage
+                candidate_results = (f"{candidate}: {vote_percentage:.1f}% ({votes:,})\n")
+                print(candidate_results)
+                # #save to txt file
+                txt_file.write(candidate_results)
 
                 # Determine winning vote count and candi
                 # Determine if the votes are greater than the winning count.
                 if (votes > winning_count) and (vote_percentage > winning_percentage):
-                # If true then set winning_count = votes and winning_percent = vote_percentage.
-                 winning_count = votes
-                 winning_percentage = vote_percentage
-                # Set the winning_candidate equal to the candidate's name.
-                 winning_candidate = candidate 
-                
-        winning_candidate_summary = (
-                 f"-------------------------\n"
-                 f"Winner: {winning_candidate}\n"
-                 f"Winning Vote Count: {winning_count:,}\n"
-                 f"Winning Percentage: {winning_percentage:.1f}%\n"
-                 f"-------------------------\n")
-        print(winning_candidate_summary)
-        # print winner candi,  vote, %
-        
+                        # If true then set winning_count = votes and winning_percent = vote_percentage.
+                        winning_count = votes
+                        winning_percentage = vote_percentage
+                        # Set the winning_candidate equal to the candidate's name.
+                        winning_candidate = candidate 
+                                
+         winning_candidate_summary = (
+                f"-------------------------\n"
+                f"Winner: {winning_candidate}\n"
+                f"Winning Vote Count: {winning_count:,}\n"
+                f"Winning Percentage: {winning_percentage:.1f}%\n"
+                f"-------------------------\n")
+         #print winner candi,  vote, %
+         print(winning_candidate_summary)
+         # save to txt
+         txt_file.write(winning_candidate_summary)
 
-# # Print total votes.
-# print(total_votes)
-# # print candidate names
-# print(candidate_options)
-# # print candidate vote dict
-# print(candidate_votes)
-
-
-
-
-# # using statment to open as a txt file.
-# with open(file_to_save, "w") as txt_file:
-#     # write some data to the file.
-#     txt_file.write("Hello World")
+                        
